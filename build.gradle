@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    google()
+    maven {
+        name "Atlassian"
+        url "https://maven.atlassian.com/3rdparty/"
+    }
+    maven {
+        name "ImageJ"
+        url "https://maven.imagej.net/content/repositories/public/"
+    }
+    maven {
+        name "Maven Central"
+        url "https://repo1.maven.org/maven2/"
+    }
+    maven {
+        name "Bubble Blaster Maven"
+        url "https://github.com/Ultreon/bubble-blaster/raw/main/.mavenrepo/"
+    }
+}
+
+configurations {
+
+}
+
+dependencies {
+    api group: "com.ultreon", name: "bubbles", version: "0.0.2992-indev4"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+compileJava {
+    doFirst {
+        mkdir "${projectDir}/run/"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

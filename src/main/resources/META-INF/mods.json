@@ -1,0 +1,16 @@
+{
+  "license": "Your license here",
+  "fileId": "com.example.mod",
+  "mods": [
+    {
+      "description": [
+        "The core of the Game. Containing core features."
+      ],
+      "modId": "com.example.mod",
+      "name": "Example Mod",
+      "version": "1.0.0",
+      "license": "Your license here",
+      "build": 153
+    }
+  ]
+}
