@@ -1,0 +1,12 @@
+{
+  "examplemod": {
+    "bubble": {
+      "name": {
+        "example": "Example Bubble"
+      },
+      "description": {
+        "example": "Example description, the developer / translator puts the description in with in the language of the file."
+      }
+    }
+  }
+}
