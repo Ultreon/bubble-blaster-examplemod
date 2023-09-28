@@ -3,7 +3,6 @@ package com.example;
 import com.example.init.ModBubbles;
 import com.ultreon.bubbles.BubbleBlaster;
 import com.ultreon.bubbles.event.v1.GameEvents;
-import com.ultreon.bubbles.event.v1.WindowEvents;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
