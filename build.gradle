@@ -22,10 +22,26 @@ repositories {
         name "Maven Central"
         url "https://repo1.maven.org/maven2/"
     }
+
     maven {
         name "Jitpack"
-        url "https://jitpack.io/"
+        url "https://jitpack.io"
+
+        content {
+            includeGroup "space.earlygrey"
+            includeGroup "com.github.JnCrMx"
+        }
     }
+
+    maven {
+        name = "BubbleBlasterMaven"
+        url = uri("https://maven.pkg.github.com/Ultreon/bubble-blaster-2")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+        }
+    }
+
     maven {
         name "FabricMC"
         url "https://maven.fabricmc.net/"
@@ -37,42 +53,14 @@ configurations {
 }
 
 dependencies {
-    implementation "com.github.Ultreon.bubble-blaster-2:core:libgdx-SNAPSHOT"
-    implementation "com.github.Ultreon.bubble-blaster-2:desktop:libgdx-SNAPSHOT"
-    implementation "com.github.Ultreon.bubble-blaster-2:desktop-merge:libgdx-SNAPSHOT"
-    implementation "com.github.Ultreon.bubble-blaster-2:gameprovider:libgdx-SNAPSHOT"
-    implementation "com.github.Ultreon.bubble-blaster-2:minimal:libgdx-SNAPSHOT"
-
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.1"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.1"
-
-    // SLF4J
-    api "org.slf4j:slf4j-api:$slf4j_version"
-
-    implementation "com.badlogicgames.gdx:gdx-platform:$gdx_version:natives-desktop"
-    implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdx_version:natives-desktop"
-    implementation "com.badlogicgames.gdx:gdx-bullet-platform:$gdx_version:natives-desktop"
-    implementation "com.badlogicgames.gdx-controllers:gdx-controllers-desktop:$gdx_controllers_version"
-    implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdx_version:natives-desktop"
-
-    // fabric-loader dependencies
-    implementation "org.ow2.asm:asm:$asm_version"
-    implementation "org.ow2.asm:asm-analysis:$asm_version"
-    implementation "org.ow2.asm:asm-commons:$asm_version"
-    implementation "org.ow2.asm:asm-tree:$asm_version"
-    implementation "org.ow2.asm:asm-util:$asm_version"
-
-    implementation("net.fabricmc:sponge-mixin:$mixin_version") {
-        exclude module: 'launchwrapper'
-        exclude module: 'guava'
+    implementation "io.github.ultreon.bubbles:bubble-blaster-desktop:$bubbles_version", {
+        exclude group: "org.lwjgl.lwjgl"
+    }
+    implementation "io.github.ultreon.bubbles:bubble-blaster-core:$bubbles_version", {
+        exclude group: "org.lwjgl.lwjgl"
     }
 
-    implementation 'net.fabricmc:tiny-mappings-parser:0.3.0+build.17'
-    implementation 'net.fabricmc:tiny-remapper:0.8.5'
-    implementation 'net.fabricmc:dev-launch-injector:0.2.1+build.8'
-    implementation 'net.fabricmc:access-widener:2.1.0'
-
-    compileOnly "net.fabricmc:fabric-loader:$fabric_version"
+    implementation "net.fabricmc:fabric-loader:0.14.22"
 }
 
 compileJava {
